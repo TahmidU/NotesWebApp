@@ -17,4 +17,13 @@ public class Note {
     @Column(name = "title", nullable = false) private String Title;
     @Column(name = "content", nullable = false) private String content;
 
+    public Note(){}
+
+    public Note(Long noteId, String title, String content) {
+        this.noteId = noteId;
+        Title = title;
+        this.content = content;
+    }
+
+
 }
