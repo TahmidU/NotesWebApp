@@ -10,9 +10,9 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface INoteRepository extends PagingAndSortingRepository<Note, Long> {
 
-    @Query(value = "SELECT * FROM note n WHERE n.title = :search OR n.content = :search",
-    countQuery = "SELECT * FROM note n WHERE n.title = :search OR n.content = :search",
+    @Query(value = "SELECT * FROM note n WHERE (LOWER(n.title) LIKE %:search%) OR (LOWER(n.content) LIKE %:search%)",
+    countQuery = "SELECT COUNT(*) FROM note n WHERE (LOWER(n.title) LIKE %:search%) OR (LOWER(n.content) LIKE %:search%)",
     nativeQuery = true)
-    Page<Note> getNotesByQuery(Pageable pageable, String search);
+    Page<Note> findNotesByQuery(Pageable pageable, String search);
 
 }

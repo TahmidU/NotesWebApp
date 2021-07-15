@@ -40,7 +40,7 @@ public class NoteController {
     }
 
     @PutMapping(value = {"", "/"})
-    public ResponseEntity<Note> updateNote(Note updatedNote){
+    public ResponseEntity<Note> updateNote(@RequestBody Note updatedNote){
 
         if(!noteService.existsById(updatedNote.getNoteId()))
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

@@ -20,7 +20,7 @@ public class NoteService implements INoteService {
 
     @Override
     public Page<Note> getNotesByQuery(Pageable pageable, String search) {
-        return noteRepository.getNotesByQuery(pageable, search);
+        return noteRepository.findNotesByQuery(pageable, search);
     }
 
     @Override
