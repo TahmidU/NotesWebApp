@@ -1,0 +1,152 @@
+.nav-logo-container{
+    width: 110px;
+    height: 40px;
+}
+
+.nav-logo-container img{
+    width: 100%;
+    height: auto;
+}
+
+.nav-brand{
+    display: flex;
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+    align-items: center;
+    justify-content: flex-start;
+
+}
+
+nav{
+    background: var(--primary-colour);
+    height: 6rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 10;
+    
+}
+
+.nav-options{
+    display: inline-block;
+    font-size: medium;
+    font-weight: 400;
+}
+
+.nav-options ul{
+    padding-left: 0rem; /* Strange bug that causes left padding. */
+}
+
+.nav-link{
+    color: var(--text-colour);
+    display: inline-block;
+    text-transform: uppercase;
+    padding: 0 1rem;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease-in;
+}
+
+.nav-link:hover{
+    color: var(--text-colour-alt);
+    transition: all 0.3s ease-out;
+}
+
+.nav-btn{
+    display: flex;
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+    align-items: center;
+    justify-content: flex-end;
+    text-decoration: none;
+}
+
+.hamburger-icon-container, input[type=checkbox]{
+    display: none;
+}
+
+@media screen and (max-width:768px) {
+    
+    .nav-btn{
+        display: none;
+    }
+
+    .nav-options{
+        display: block;
+        padding: 0rem;
+        height: 100%;
+        width: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: var(--primary-colour);
+        overflow-y: hidden;
+    }
+
+    .nav-options ul{
+        position: absolute;
+        top: 25%;
+        left: 50%;
+        transform: translate(-50%,25%);
+    }
+
+    .nav-link{
+        display: block;
+        font-size: larger;
+        padding: 1rem 0;
+        text-align: center;
+    }
+
+    .hamburger-icon-container{
+        display: block;
+        position: absolute;
+        width: 35px;
+        height: 35px;
+        right: 2rem;
+        top: 2rem;
+        z-index: 30;
+    }
+
+    input[type=checkbox]{
+        display: block;
+        width: 2rem;
+        height: 2rem;
+        position: absolute;
+        cursor: pointer;
+        top: 2rem;
+        right: 2rem;
+        z-index: 35;
+        opacity: 0;
+    }
+
+    input[type=checkbox] ~ .nav-options {
+        
+        height: 0%;
+        opacity: 0;
+        transition: 0.5s;
+    
+    }
+
+    input[type="checkbox"]:checked ~ .nav-options {
+        
+        height: 100%;
+        opacity: 100;
+        transition: 0.5s;
+    
+    }
+
+    /*
+    .input[type="checkbox"]:checked:has(nav) + div{
+        height: 100%;
+    }
+    */
+
+    .hamburger-icon-container svg{
+        width: 100%;
+        height: auto;
+    }
+
+}
+
+
+

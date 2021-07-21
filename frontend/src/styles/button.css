@@ -1,0 +1,30 @@
+.btn{
+    border: none;
+    text-decoration: none;
+    background-color: transparent;
+    outline: none;
+}
+
+.btn-medium{
+    font-size: medium;
+    font-weight: 400;
+    padding: 0.5rem 1.25rem;
+}
+
+.btn-large{}
+
+.btn-round-blue{
+    background-color: var(--accent-colour);
+    color: var(--text-colour-btn);
+    border: 0.0625rem solid var(--accent-colour);
+    border-radius: 1.625rem;
+    transition: all 0.3s ease-in;
+}
+
+.btn-round-blue:hover{
+    transition: all 0.3s ease-out;
+    transition-timing-function: ease-out;
+    background: var(--accent-colour-alt);
+    color: var(--text-colour-btn-alt);
+
+}
