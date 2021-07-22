@@ -127,7 +127,7 @@ nav{
     
     }
 
-    input[type="checkbox"]:checked ~ .nav-options {
+    input[type=checkbox]:checked ~ .nav-options {
         
         height: 100%;
         opacity: 100;
@@ -135,13 +135,7 @@ nav{
     
     }
 
-    /*
-    .input[type="checkbox"]:checked:has(nav) + div{
-        height: 100%;
-    }
-    */
-
-    .hamburger-icon-container svg{
+    .hamburger-icon-container img{
         width: 100%;
         height: auto;
     }
