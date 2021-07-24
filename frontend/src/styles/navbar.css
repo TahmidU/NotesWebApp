@@ -71,6 +71,11 @@ nav{
         display: none;
     }
 
+    body{
+        overflow-y: scroll;
+        width: 100%;
+    }
+
     .nav-options{
         display: block;
         padding: 0rem;
@@ -80,7 +85,7 @@ nav{
         top: 0;
         left: 0;
         background-color: var(--primary-colour);
-        overflow-y: hidden;
+        overflow: hidden;
     }
 
     .nav-options ul{

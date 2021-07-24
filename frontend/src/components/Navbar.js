@@ -1,4 +1,4 @@
-import { useState, React } from 'react';
+import { useState, useEffect, React } from 'react';
 import '../styles/theme.css';
 import '../styles/navbar.css';
 import '../styles/button.css';
@@ -13,11 +13,43 @@ export const Navbar = () => {
 
     const [isCheckboxChecked, setCheckboxState] = useState(false);
 
+    useEffect(() => {
+
+        window.addEventListener('resize', handleWindowResize);
+        return () => {
+            window.removeEventListener('resize', handleWindowResize)
+        }
+    });
+
+    function handleWindowResize(event){
+        if(window.innerWidth > 768){
+
+            document.body.style.position = '';
+            
+        }else if(window.innerWidth <= 768 && isCheckboxChecked){
+            
+            document.body.style.position = 'fixed';
+            
+        }
+
+    }
+
     function handleCheckboxOnChange(event){
 
         const isChecked = event.target.checked;
+        
         if(isChecked !== isCheckboxChecked){
             setCheckboxState(isChecked);
+        }
+
+        if(isChecked){
+
+            document.body.style.position = 'fixed';
+
+        }else{
+
+            document.body.style.position = '';
+            
         }
 
     }
