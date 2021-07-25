@@ -9,6 +9,7 @@ footer{
 
 .footer-section-one{
     padding: 0.5rem;
+    margin-bottom: 1rem;
 }
 
 .footer-logo-container{
@@ -50,6 +51,7 @@ footer{
 .footer-header ~ li{
     font-size: small;
     margin-bottom: 0.2rem;
+    font-weight: 100;
 }
 
 @media screen and (max-width:768px) {
@@ -61,6 +63,10 @@ footer{
     .footer-section-two{
         flex-direction: column;
         margin-left: 0.5rem;
+    }
+
+    .footer-section-two ul{
+        margin-bottom: 2rem;
     }
 
     .footer-column{

@@ -3,15 +3,17 @@
     text-decoration: none;
     background-color: transparent;
     outline: none;
+    padding: 0.5rem 1.25rem;
+    font-weight: 400;
 }
 
 .btn-medium{
     font-size: medium;
-    font-weight: 400;
-    padding: 0.5rem 1.25rem;
 }
 
-.btn-large{}
+.btn-large{
+    font-size: large;
+}
 
 .btn-round-blue{
     background-color: var(--accent-colour);

@@ -54,6 +54,15 @@ export const Navbar = () => {
 
     }
 
+    function handleOnLinkClick(){
+
+        var checkbox = document.getElementById('nav-checkbox');
+        checkbox.checked = false;
+        document.body.style.position = '';
+        setCheckboxState(false);
+
+    }
+
     return(
         <div>
         
@@ -65,16 +74,16 @@ export const Navbar = () => {
                     </div>
                 </Link>
 
-                <input type='checkbox' onChange={handleCheckboxOnChange}/>
+                <input id='nav-checkbox' type='checkbox' onChange={handleCheckboxOnChange}/>
                 <div className='hamburger-icon-container'>
                     <img src={isCheckboxChecked ? CrossImg : HamburgerImg} alt='hamburger'/>
                 </div>
 
                 <div className='nav-options'>
                         <ul className='test'>
-                            <Link className='nav-link' to='/'>Home</Link>
-                            <HashLink className='nav-link' smooth to='/#about'>About</HashLink>
-                            <Link className='nav-link' to='/'>Support</Link>
+                            <Link onClick={handleOnLinkClick} className='nav-link' to='/'>Home</Link>
+                            <HashLink onClick={handleOnLinkClick} className='nav-link' smooth to='/#about'>About</HashLink>
+                            <Link onClick={handleOnLinkClick} className='nav-link' to='/'>Support</Link>
                         </ul>
                 </div>
 
