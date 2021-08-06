@@ -6,7 +6,7 @@ export const Layout = ({children}) => (
 
     <>
         <Navbar/>
-        <div className='main_body' style={{width: '100%', height: '100vh'}}>
+        <div className='main_body' style={{width: '100%', height: '100%'}}>
             {children}
         </div>
         <Footer/>
