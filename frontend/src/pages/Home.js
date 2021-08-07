@@ -7,6 +7,7 @@ import FreeImg from '../img/about_free.svg';
 import MapImg from '../img/about_map.svg';
 import DesignImg from '../img/about_design.svg';
 import OrganisedImg from '../img/about_organised.svg';
+import { TestimonyViewer } from '../components/TestimonyViewer';
 
 const Home = () => {
 
@@ -23,8 +24,8 @@ const Home = () => {
                     <img src={HeroImg} alt='hero_image'/>
                 </div>
             </div>
-            <div className='about-container'>
-                <h1 id='about'>About</h1>
+            <div id='about' className='about-container'>
+                <h1>About</h1>
                 <div className='grid-layout'>
                     <div className='grid-box'>
                         <div className='grid-image-container'>
@@ -56,9 +57,7 @@ const Home = () => {
                     </div>
                 </div>
             </div>
-            <div className='testimony-container'>
-
-            </div>
+            <TestimonyViewer/>
         </Layout>
     );
 
