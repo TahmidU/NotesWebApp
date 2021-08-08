@@ -1,10 +1,10 @@
 import React, { useRef, useEffect, useState } from 'react';
-import '../styles/testimony_viewer.css';
+import '../styles/testimony_section.css';
 import ForbesImg from '../img/forbes_logo.png';
 import WellGoodImg from '../img/well&good_logo.png';
 import IncImg from '../img/inc_logo.png';
 
-export const TestimonyViewer = () => {
+export const TestimonySection = () => {
 
     const reviewers = ['Forbes', 'Well + Good', 'Inc. Magazine'];
     const reviewersQuotes = [
