@@ -1,0 +1,14 @@
+:root{
+    --primary-colour: #FFF;
+    --secondary-colour: #FFCC00;
+    --tetiary-colour: #b3b3b35d;
+    --quaternary-colour: #1a1a1a;
+    --accent-colour: #256CE1;
+    --accent-colour-alt: var(--primary-colour);
+    --text-colour: var(var(--quaternary-colour));
+    --text-colour-alt: var(--tetiary-colour);
+    --text-colour-dark-alt: var(--primary-colour);
+    --text-colour-btn: var(--primary-colour);
+    --text-colour-btn-alt: var(--accent-colour);
+
+}

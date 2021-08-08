@@ -1,0 +1,12 @@
+/* About container */
+.about-container{
+    padding: 3rem 0;
+}
+
+
+/* Testimony container */
+.testimony-container{
+    margin: 3rem 0;
+    width: 100%;
+    padding: 2rem;
+}
