@@ -3,8 +3,14 @@
     text-decoration: none;
     background-color: transparent;
     outline: none;
+    cursor: pointer;
     padding: 0.5rem 1.25rem;
     font-weight: 400;
+}
+
+/* Sizes */
+.btn-small{
+    font-size: small;
 }
 
 .btn-medium{
@@ -15,6 +21,7 @@
     font-size: large;
 }
 
+/* Styles */
 .btn-round-blue{
     background-color: var(--accent-colour);
     color: var(--text-colour-btn);
@@ -28,5 +35,8 @@
     transition-timing-function: ease-out;
     background: var(--accent-colour-alt);
     color: var(--text-colour-btn-alt);
+}
 
+.btn-text-blue{
+    color: var(--text-colour-btn-alt);
 }

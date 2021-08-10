@@ -1,0 +1,43 @@
+.note-title-section{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.note-title-section > div{
+    width: 100%;
+    font-size: x-large;
+    padding: 1rem 0;
+}
+
+.note-title-section button{
+    margin: 0 1rem;
+}
+
+#edit-btn, #delete-btn{
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+#edit-btn, #delete-btn{
+    width: 2rem;
+    height: auto;
+
+}
+
+#edit-btn img, #delete-btn img{
+    width: 100%;
+    height: auto;
+}
+
+.note-desc{
+    font-size: large;
+    padding: 1rem 0;
+}
+
+.expand-btn{
+    padding: 0.25rem 0 !important;
+}

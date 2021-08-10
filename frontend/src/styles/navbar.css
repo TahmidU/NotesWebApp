@@ -61,7 +61,7 @@ nav{
     text-decoration: none;
 }
 
-.hamburger-icon-container, input[type=checkbox]{
+.hamburger-icon-container, #nav-checkbox{
     display: none;
 }
 
@@ -112,7 +112,7 @@ nav{
         z-index: 30;
     }
 
-    input[type=checkbox]{
+    #nav-checkbox{
         display: block;
         width: 2rem;
         height: 2rem;
@@ -124,7 +124,7 @@ nav{
         opacity: 0;
     }
 
-    input[type=checkbox] ~ .nav-options {
+    #nav-checkbox ~ .nav-options {
         
         height: 0%;
         opacity: 0;
@@ -132,7 +132,7 @@ nav{
     
     }
 
-    input[type=checkbox]:checked ~ .nav-options {
+    #nav-checkbox:checked ~ .nav-options {
         
         height: 100%;
         opacity: 100;

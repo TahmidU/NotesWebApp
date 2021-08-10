@@ -5,7 +5,7 @@ import { HeroSection } from '../components/HeroSection';
 import { AboutSection } from '../components/AboutSection';
 import { TestimonySection } from '../components/TestimonySection';
 
-const Home = () => {
+export const Home = () => {
 
 
     return(
@@ -17,5 +17,3 @@ const Home = () => {
     );
 
 }
-
-export default Home;

@@ -87,7 +87,7 @@ export const Navbar = () => {
                         </ul>
                 </div>
 
-                <Button btnSize='btn-medium' btnStyle='btn-round-blue' isNavBtn={true} to='/noteboard'>Get Started</Button>
+                <Button className='nav-btn' btnSize='btn-medium' btnStyle='btn-round-blue' to='/noteboard' isLink={true}>Get Started</Button>
 
             </nav>
 
