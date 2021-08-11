@@ -1,21 +1,26 @@
-import React, { useState } from 'react';
+import React from 'react';
+import '../styles/image_button.css';
 import { Link } from 'react-router-dom';
 
-export const ImageButton = ({toggleImages, onClick}) => {
+const SIZES = ['img-btn-small', 'img-btn-logo'];
 
-    const [isClicked, setClicked] = useState(false);
-    
-    // Array that should consist of length 2. Toggles between index 0 (default) and 1.
-    const checkToggleImages = toggleImages;
+export const ImageButton = ({image, alt, btnSize, isLink, to, className, onClick}) => {
 
-    function handleOnClick(){
+    const checkBtnSize = SIZES.includes(btnSize) ? btnSize : SIZES[0];
+    const checkTo = to == null ? '/' : to;
+    const checkClassName = className == null ? '' : className;
 
-        onClick();
+    if(isLink){
+        return(
+            <Link className={`img-btn ${checkBtnSize} ${checkClassName}`} to={checkTo}>
+                <img src={image} alt={alt}/>
+            </Link>
+        );
     }
 
     return(
-        <button onClick={handleOnClick}>
-            <img src={checkToggleImages[0]}/>
+        <button className={`img-btn ${checkBtnSize} ${checkClassName}`} onClick={onClick}>
+            <img src={image} alt={alt}/>
         </button>
     )
 

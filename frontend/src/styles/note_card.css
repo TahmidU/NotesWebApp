@@ -1,3 +1,10 @@
+.card{
+    padding: 1rem;
+    border: 0.1rem solid var(--tetiary-colour);
+    box-shadow: 0px 0px 0.5rem var(--tetiary-colour);
+    margin: 1rem 0;
+}
+
 .note-title-section{
     display: flex;
     flex-direction: row;
@@ -13,24 +20,7 @@
 }
 
 .note-title-section button{
-    margin: 0 1rem;
-}
-
-#edit-btn, #delete-btn{
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
-}
-
-#edit-btn, #delete-btn{
-    width: 2rem;
-    height: auto;
-
-}
-
-#edit-btn img, #delete-btn img{
-    width: 100%;
-    height: auto;
+    margin: 0 0 0 1rem;
 }
 
 .note-desc{
@@ -39,5 +29,5 @@
 }
 
 .expand-btn{
-    padding: 0.25rem 0 !important;
+    padding: 0 !important; 
 }

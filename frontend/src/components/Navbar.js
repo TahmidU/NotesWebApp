@@ -8,6 +8,7 @@ import CrossImg from '../img/cross.svg';
 import { Link } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
 import { Button } from './Button';
+import { ImageButton } from './ImageButton';
 
 export const Navbar = () => {
 
@@ -22,14 +23,11 @@ export const Navbar = () => {
     });
 
     function handleWindowResize(event){
-        if(window.innerWidth > 768){
 
+        if(window.innerWidth > 768){
             document.body.style.position = '';
-            
         }else if(window.innerWidth <= 768 && isCheckboxChecked){
-            
             document.body.style.position = 'fixed';
-            
         }
 
     }
@@ -43,13 +41,9 @@ export const Navbar = () => {
         }
 
         if(isChecked){
-
             document.body.style.position = 'fixed';
-
         }else{
-
             document.body.style.position = '';
-            
         }
 
     }
@@ -68,11 +62,7 @@ export const Navbar = () => {
         
             <nav>
 
-                <Link className='nav-brand' to='/'>
-                    <div className='nav-logo-container'>
-                        <img src={LogoImg} alt='logo'/>
-                    </div>
-                </Link>
+                <ImageButton image={LogoImg} alt='logo' btnSize='img-btn-logo' className='nav-logo-container' isLink={true}/>
 
                 <input id='nav-checkbox' type='checkbox' onChange={handleCheckboxOnChange}/>
                 <div className='hamburger-icon-container'>

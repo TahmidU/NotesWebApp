@@ -9,6 +9,7 @@ export const Button = ({children, btnSize, btnStyle, className, isLink, onClick,
 
     const checkBtnSize = SIZES.includes(btnSize) ? btnSize : SIZES[0];
     const checkBtnStyle = STYLES.includes(btnStyle) ? btnStyle : STYLES[0];
+    const checkTo = to == null ? '/' : to;
     const checkClassName = className == null ? '' : className;
     
     const [currText, setCurrentText] = useState({count: 0, text : Array.isArray(children) ? children[0] : children});
@@ -29,7 +30,7 @@ export const Button = ({children, btnSize, btnStyle, className, isLink, onClick,
     if(isLink){
         // You should not have children be an array if you are using a link since you will be switching pages. However, currText.text is used for safety.
         return(
-            <Link className={`btn ${checkBtnSize} ${checkBtnStyle} ${checkClassName}`} to={to}>{currText.text}</Link>
+            <Link className={`btn ${checkBtnSize} ${checkBtnStyle} ${checkClassName}`} to={checkTo}>{currText.text}</Link>
         );
     }else{
         return(
