@@ -5,8 +5,6 @@ import '../styles/button.css';
 import LogoImg from '../img/logo.svg';
 import HamburgerImg from '../img/hamburger.svg';
 import CrossImg from '../img/cross.svg';
-import { Link } from 'react-router-dom';
-import { HashLink } from 'react-router-hash-link';
 import { Button } from './Button';
 import { ImageButton } from './ImageButton';
 
@@ -71,9 +69,9 @@ export const Navbar = () => {
 
                 <div className='nav-options'>
                         <ul className='test'>
-                            <Link onClick={handleOnLinkClick} className='nav-link' to='/'>Home</Link>
-                            <HashLink onClick={handleOnLinkClick} className='nav-link' smooth to='/#about'>About</HashLink>
-                            <Link onClick={handleOnLinkClick} className='nav-link' to='/'>Support</Link>
+                            <Button onClick={handleOnLinkClick} isLink={true} btnSize='btn-medium' className='nav-link'>Home</Button>
+                            <Button onClick={handleOnLinkClick} isHashLink={true} btnSize='btn-medium' className='nav-link' to='/#about'>About</Button>
+                            <Button onClick={handleOnLinkClick} isLink={true} btnSize='btn-medium' className='nav-link'>Support</Button>
                         </ul>
                 </div>
 

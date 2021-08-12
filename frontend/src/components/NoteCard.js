@@ -4,8 +4,9 @@ import EditImg from '../img/edit.svg';
 import DeleteImg from '../img/trash.svg';
 import { Button } from '../components/Button';
 import { ImageButton } from './ImageButton';
+import axios from 'axios';
 
-export const NoteCard = ({note}) => {
+export const NoteCard = ({note, onDelete}) => {
 
     const contentEltRef = useRef();
 
@@ -18,22 +19,24 @@ export const NoteCard = ({note}) => {
         }
     }
 
+    function deleteNote(id){
+        axios.delete(`http://localhost:8080/api/note/${id}`).then(onDelete);
+    }
+
     return(
-        <>
-        <li key={note.id} className='card'>
+        <li className='card'>
             <div className='note-title-section'>
                 <div>
                     <p>{note.title}</p>
                 </div>
-                <ImageButton image={EditImg} alt='edit' isLink={true} to={`noteboard/edit/${note.id}`}/>
-                <ImageButton image={DeleteImg} alt='delete'/>
+                <ImageButton image={EditImg} alt='edit' isLink={true} to={`/edit/${note.id}`}/>
+                <ImageButton image={DeleteImg} alt='delete' onClick={() => deleteNote(note.noteId)}/>
             </div>
             <Button className='expand-btn' isLink={false} btnSize='btn-small' btnStyle='btn-text-blue' onClick={toggleContentExpand}>{[['+ Expand'], ['- Collapse']]}</Button>
             <div ref={contentEltRef} className='note-desc' style={{display:'none'}}>
                 <p>{note.content}</p>
             </div>
         </li>
-        </>
     );
 
 }

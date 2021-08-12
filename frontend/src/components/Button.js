@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { HashLink } from 'react-router-hash-link';
 import '../styles/button.css';
 
 const SIZES = ['btn-small', 'btn-medium', 'btn-large'];
 const STYLES = ['', 'btn-round-blue', 'btn-text-blue'];
 
-export const Button = ({children, btnSize, btnStyle, className, isLink, onClick, to}) => {
+export const Button = ({children, btnSize, btnStyle, className, isLink, isHashLink, onClick, to}) => {
 
     const checkBtnSize = SIZES.includes(btnSize) ? btnSize : SIZES[0];
     const checkBtnStyle = STYLES.includes(btnStyle) ? btnStyle : STYLES[0];
@@ -28,9 +29,12 @@ export const Button = ({children, btnSize, btnStyle, className, isLink, onClick,
    
 
     if(isLink){
-        // You should not have children be an array if you are using a link since you will be switching pages. However, currText.text is used for safety.
         return(
-            <Link className={`btn ${checkBtnSize} ${checkBtnStyle} ${checkClassName}`} to={checkTo}>{currText.text}</Link>
+            <Link className={`btn ${checkBtnSize} ${checkBtnStyle} ${checkClassName}`} to={checkTo} onClick={onClick}>{currText.text}</Link>
+        );
+    }else if(isHashLink){
+        return(
+            <HashLink className={`btn ${checkBtnSize} ${checkBtnStyle} ${checkClassName}`} smooth to={checkTo} onClick={onClick}>{currText.text}</HashLink>
         );
     }else{
         return(
