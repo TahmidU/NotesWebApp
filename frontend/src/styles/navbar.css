@@ -35,15 +35,22 @@ nav{
 }
 
 .nav-link{
-    color: var(--text-colour);
     display: inline-block;
-    text-transform: uppercase;
     transition: all 0.3s ease-in;
 }
 
-.nav-link:hover{
+.nav-link:hover, .nav-link-hidden:hover{
     color: var(--text-colour-alt);
     transition: all 0.3s ease-out;
+}
+
+.nav-link, .nav-link-hidden{
+    color: var(--text-colour);
+    text-transform: uppercase;
+}
+
+.nav-link-hidden{
+    display: none;
 }
 
 .nav-btn{
@@ -89,10 +96,12 @@ nav{
         transform: translate(-50%,25%);
     }
 
-    .nav-link{
+    .nav-link, .nav-link-hidden{
         display: block;
+        text-align: center;
         font-size: larger;
         padding: 1rem 0;
+        margin: 1rem 0;
         text-align: center;
     }
 

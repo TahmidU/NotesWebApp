@@ -4,6 +4,7 @@ import { Layout } from '../components/Layout';
 import { NoteCard } from '../components/NoteCard';
 import axios from 'axios';
 import { Button } from '../components/Button';
+import { Search } from '../components/Search';
 
 export const Noteboard = () => {
 
@@ -32,11 +33,12 @@ export const Noteboard = () => {
 
     function refreshNotes(){
 
-        if(contents.page !== 0){
+        if(contents.page !== 0 && contents.notes.length === 1){
+
             setContents((prevState) => {
                 return{
                     notes: prevState.notes,
-                    page: 0,
+                    page: prevState.page - 1,
                     totalPages: prevState.totalPages
                 }
             });
@@ -45,11 +47,21 @@ export const Noteboard = () => {
         }
     }
 
+    function onSearch(notes, totalPages){
+
+        setContents((prevState) => {
+            return{
+                notes: notes,
+                page: 0,
+                totalPages: totalPages
+            }
+        })
+    }
+
     return(
         <Layout>
             <div className='noteboard-container'>
-                <div className='search-container'>
-                </div>
+                <Search onSearch={onSearch}/>
                 <div className='notes-list-container'>
                     <ul>
                         {contents.notes.map(note => {

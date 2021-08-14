@@ -68,10 +68,11 @@ export const Navbar = () => {
                 </div>
 
                 <div className='nav-options'>
-                        <ul className='test'>
+                        <ul>
                             <Button onClick={handleOnLinkClick} isLink={true} btnSize='btn-medium' className='nav-link'>Home</Button>
                             <Button onClick={handleOnLinkClick} isHashLink={true} btnSize='btn-medium' className='nav-link' to='/#about'>About</Button>
                             <Button onClick={handleOnLinkClick} isLink={true} btnSize='btn-medium' className='nav-link'>Support</Button>
+                            <Button onClick={handleOnLinkClick} isLink={true} btnSize='btn-medium' className='nav-link-hidden' to='/noteboard'>Noteboard</Button>
                         </ul>
                 </div>
 
