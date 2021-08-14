@@ -2,9 +2,9 @@ import React, {useRef} from 'react';
 import '../styles/note_card.css';
 import EditImg from '../img/edit.svg';
 import DeleteImg from '../img/trash.svg';
-import { Button } from '../components/Button';
 import { ImageButton } from './ImageButton';
 import axios from 'axios';
+import { ToggleButton } from './ToggleButton';
 
 export const NoteCard = ({note, onDelete}) => {
 
@@ -32,7 +32,7 @@ export const NoteCard = ({note, onDelete}) => {
                 <ImageButton image={EditImg} alt='edit' isLink={true} to={`/edit/${note.id}`}/>
                 <ImageButton image={DeleteImg} alt='delete' onClick={() => deleteNote(note.noteId)}/>
             </div>
-            <Button className='expand-btn' isLink={false} btnSize='btn-small' btnStyle='btn-text-blue' onClick={toggleContentExpand}>{[['+ Expand'], ['- Collapse']]}</Button>
+            <ToggleButton className='expand-btn' btnSize='btn-small' btnStyle='btn-text-blue' onClick={toggleContentExpand}>{[['+ Expand'], ['- Collapse']]}</ToggleButton>
             <div ref={contentEltRef} className='note-desc' style={{display:'none'}}>
                 <p>{note.content}</p>
             </div>

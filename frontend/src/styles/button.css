@@ -40,3 +40,10 @@
 .btn-text-blue{
     color: var(--text-colour-btn-alt);
 }
+
+.btn-text-selected{
+    background-color: var(--accent-colour);
+    border-radius: 2rem;
+    color: var(--text-colour-dark-alt);
+    text-decoration: underline;
+}

@@ -1,3 +1,39 @@
+.noteboard-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    min-height: 100vh;
+    padding: 1rem;
+}
+
 .notes-list-container{
-    padding: 1.25rem;
+    display: flex;
+    justify-content: center;
+}
+
+.notes-list-container ul{
+    width: 80%;
+    list-style-type: none;
+}
+
+.page-num-container{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+}
+
+@media screen and (max-width:768px) {
+
+    .page-num-container{
+        margin: 1rem 0;
+    }
+
+    .page-num-container button{
+        font-size: smaller !important;
+        padding: 0.5rem 0.6rem !important;
+    }
+
+
 }

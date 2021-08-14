@@ -31,3 +31,16 @@
 .expand-btn{
     padding: 0 !important; 
 }
+
+@media screen and (max-width:768px) {
+
+    .note-title-section > div{
+        font-size: medium;
+    }
+
+    .note-desc{
+        font-size: small;
+    }
+
+
+}
