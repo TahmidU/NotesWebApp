@@ -1,5 +1,6 @@
 package com.tahmidu.notes_web_app.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jayway.jsonpath.JsonPath;
@@ -121,6 +122,41 @@ public class NoteControllerIT {
         // When Then
         mockMvc.perform(MockMvcRequestBuilders.get(String.format("/api/note/%s", invalidNoteId)))
                 .andExpect(MockMvcResultMatchers.status().isNotFound());
+
+    }
+
+    @Test
+    public void givenValidNote_whenAddNote_thenReturnNoteAndStatusOK() throws Exception {
+
+        // Given
+        Note note = new Note("Title", "Content");
+        Note expectedNote = new Note(1L, "Title", "Content");
+
+        // When Then
+        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.post("/api/note")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(expectedNote)))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andReturn();
+
+        Note actualNote = objectMapper.readValue(result.getResponse().getContentAsString(), Note.class);
+        Assertions.assertEquals(expectedNote, actualNote);
+    }
+
+    @Test
+    public void givenAlreadyExistingNote_whenAddNote_thenReturnStatusConflict() throws Exception {
+
+        // Given
+        List<Note> notes = generateNotes();
+        noteRepository.saveAll(notes);
+
+        Note invalidNote = new Note(1L, "Test", "Test");
+
+        // When Then
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/note")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(invalidNote)))
+                .andExpect(MockMvcResultMatchers.status().isConflict());
 
     }
 

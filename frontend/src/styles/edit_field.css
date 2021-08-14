@@ -1,0 +1,23 @@
+.edit-text{
+    padding: 0 1rem;
+    appearance: none;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.large-font{
+    font-size: large;
+}
+
+.edit-text-blue{
+    color: var(--text-colour);
+    background-color: var(--primary-colour);
+    border: 0.15rem solid var(--quaternary-colour);
+    border-radius: 1.625rem;
+    transition: 1s;
+}
+
+.edit-text-blue:hover, .edit-text-blue:focus, .edit-text-blue:active{
+    border: 0.15rem solid var(--accent-colour);
+}
+

@@ -5,9 +5,8 @@ import '../styles/button.css';
 import LogoImg from '../img/logo.svg';
 import HamburgerImg from '../img/hamburger.svg';
 import CrossImg from '../img/cross.svg';
-import { Link } from 'react-router-dom';
-import { HashLink } from 'react-router-hash-link';
 import { Button } from './Button';
+import { ImageButton } from './ImageButton';
 
 export const Navbar = () => {
 
@@ -22,14 +21,11 @@ export const Navbar = () => {
     });
 
     function handleWindowResize(event){
-        if(window.innerWidth > 768){
 
+        if(window.innerWidth > 768){
             document.body.style.position = '';
-            
         }else if(window.innerWidth <= 768 && isCheckboxChecked){
-            
             document.body.style.position = 'fixed';
-            
         }
 
     }
@@ -43,13 +39,9 @@ export const Navbar = () => {
         }
 
         if(isChecked){
-
             document.body.style.position = 'fixed';
-
         }else{
-
             document.body.style.position = '';
-            
         }
 
     }
@@ -68,11 +60,7 @@ export const Navbar = () => {
         
             <nav>
 
-                <Link className='nav-brand' to='/'>
-                    <div className='nav-logo-container'>
-                        <img src={LogoImg} alt='logo'/>
-                    </div>
-                </Link>
+                <ImageButton image={LogoImg} alt='logo' btnSize='img-btn-logo' className='nav-logo-container' isLink={true}/>
 
                 <input id='nav-checkbox' type='checkbox' onChange={handleCheckboxOnChange}/>
                 <div className='hamburger-icon-container'>
@@ -80,14 +68,15 @@ export const Navbar = () => {
                 </div>
 
                 <div className='nav-options'>
-                        <ul className='test'>
-                            <Link onClick={handleOnLinkClick} className='nav-link' to='/'>Home</Link>
-                            <HashLink onClick={handleOnLinkClick} className='nav-link' smooth to='/#about'>About</HashLink>
-                            <Link onClick={handleOnLinkClick} className='nav-link' to='/'>Support</Link>
+                        <ul>
+                            <Button onClick={handleOnLinkClick} isLink={true} btnSize='btn-medium' className='nav-link'>Home</Button>
+                            <Button onClick={handleOnLinkClick} isHashLink={true} btnSize='btn-medium' className='nav-link' to='/#about'>About</Button>
+                            <Button onClick={handleOnLinkClick} isLink={true} btnSize='btn-medium' className='nav-link'>Support</Button>
+                            <Button onClick={handleOnLinkClick} isLink={true} btnSize='btn-medium' className='nav-link-hidden' to='/noteboard'>Noteboard</Button>
                         </ul>
                 </div>
 
-                <Button btnSize='btn-medium' btnStyle='btn-round-blue' isNavBtn={true} to='/noteboard'>Get Started</Button>
+                <Button className='nav-btn' btnSize='btn-medium' btnStyle='btn-round-blue' to='/noteboard' isLink={true}>Get Started</Button>
 
             </nav>
 

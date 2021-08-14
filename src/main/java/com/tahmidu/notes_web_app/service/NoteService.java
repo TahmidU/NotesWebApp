@@ -30,6 +30,11 @@ public class NoteService implements INoteService {
     }
 
     @Override
+    public Note addNote(Note note) {
+        return noteRepository.save(note);
+    }
+
+    @Override
     public Note updateNote(Note updatedNote) {
         return noteRepository.save(updatedNote);
     }

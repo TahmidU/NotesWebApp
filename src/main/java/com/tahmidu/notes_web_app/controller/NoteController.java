@@ -39,6 +39,15 @@ public class NoteController {
         return new ResponseEntity<>(noteService.getNoteById(noteId), HttpStatus.OK);
     }
 
+    @PostMapping(value = {"","/"})
+    public ResponseEntity<Note> addNote(@RequestBody Note note){
+
+        if(note.getNoteId() != null && noteService.existsById(note.getNoteId()))
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
+
+        return new ResponseEntity<>(noteService.addNote(note), HttpStatus.OK);
+    }
+
     @PutMapping(value = {"", "/"})
     public ResponseEntity<Note> updateNote(@RequestBody Note updatedNote){
 

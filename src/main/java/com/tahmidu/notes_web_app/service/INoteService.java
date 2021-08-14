@@ -11,6 +11,7 @@ public interface INoteService {
     Page<Note> getAllNotes(Pageable pageable);
     Page<Note> getNotesByQuery(Pageable pageable, String search);
     Note getNoteById(Long noteId);
+    Note addNote(Note note);
     Note updateNote(Note updatedNote);
     void deleteNoteById(Long noteId);
     boolean existsById(Long noteId);

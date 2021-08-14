@@ -1,0 +1,25 @@
+.img-btn{
+    background-color: transparent;
+    cursor: pointer;
+    border: none;
+}
+
+.img-btn-small{
+    width: 2rem;
+    height: auto;
+}
+
+.img-btn-small img{
+    width: 100%;
+    height: auto;
+}
+
+img-btn-logo{
+    width: 6.9rem;
+    height: 2.5rem;
+}
+
+.img-btn-logo img{
+    width: 100%;
+    height: auto;
+}
