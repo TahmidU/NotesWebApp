@@ -61,7 +61,12 @@ export const Noteboard = () => {
     return(
         <Layout>
             <div className='noteboard-container'>
-                <Search onSearch={onSearch}/>
+                <div>
+                    <div className='btn-container'>
+                        <Button className='add-btn' btnStyle='btn-round-blue' btnSize='btn-medium' isLink={true} to='/add-note'>+ Add Note</Button>
+                    </div>
+                    <Search onSearch={onSearch} placeholder='search...'/>
+                </div>
                 <div className='notes-list-container'>
                     <ul>
                         {contents.notes.map(note => {

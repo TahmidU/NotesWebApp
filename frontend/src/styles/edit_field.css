@@ -1,23 +1,28 @@
 .edit-text{
-    padding: 0 1rem;
     appearance: none;
     outline: none;
     box-sizing: border-box;
+    padding: 1rem;
 }
 
-.large-font{
+.font-large{
     font-size: large;
 }
 
-.edit-text-blue{
-    color: var(--text-colour);
-    background-color: var(--primary-colour);
-    border: 0.15rem solid var(--quaternary-colour);
-    border-radius: 1.625rem;
-    transition: 1s;
+.font-medium{
+    font-size: medium;
 }
 
-.edit-text-blue:hover, .edit-text-blue:focus, .edit-text-blue:active{
-    border: 0.15rem solid var(--accent-colour);
+.edit-text-light{
+    color: var(--text-colour);
+    background-color: var(--primary-colour);
+    border: 0.1rem solid var(--quaternary-colour);
+    border-radius: 1.625rem;
+    transition: 0.8s;
 }
+
+.edit-text-light:hover, .edit-text-light:focus, .edit-text-blue:active{
+    border: 0.1rem solid var(--accent-colour);
+}
+
 

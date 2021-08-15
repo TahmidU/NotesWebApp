@@ -3,13 +3,14 @@ import '../styles/search.css';
 import '../styles/edit_field.css';
 import '../styles/button.css';
 import axios from 'axios';
+import { EditText } from './EditText';
 
 export const Search = (props) => {
 
     const [query, setQuery] = useState('');
 
-    function handleChange(event){
-        setQuery(event.target.value);
+    function handleChange(text){
+        setQuery(text);
     }
 
     function submitQuery(event){
@@ -24,8 +25,8 @@ export const Search = (props) => {
     return(
         <div className='search-container'>
             <form onSubmit={submitQuery}>
-                <input id='search' className='edit-text edit-text-blue large-font' name='search' placeholder='search...' inputMode='text' type='text' onChange={handleChange} />
-                <input className='btn btn-small btn-round-blue' type='submit' />
+                <EditText className='search-box' placeholder={props.placeholder} editStyle='edit-text-light' editSize='font-large' inputMode='text' type='text' onChange={handleChange} />
+                <input className='btn btn-small btn-round-blue' type='submit' text='submit' />
             </form>
         </div>
     );
