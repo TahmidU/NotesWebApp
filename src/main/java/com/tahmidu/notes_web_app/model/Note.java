@@ -14,19 +14,19 @@ public class Note {
     @Column(name = "note_id", nullable = false)
     private Long noteId;
 
-    @Column(name = "title", nullable = false) private String Title;
-    @Column(name = "content", nullable = false) private String content;
+    @Column(name = "title", nullable = false) private String title;
+    @Column(name = "content") private String content;
 
     public Note(){}
 
     public Note(Long noteId, String title, String content) {
         this.noteId = noteId;
-        Title = title;
+        this.title = title;
         this.content = content;
     }
 
     public Note(String title, String content) {
-        Title = title;
+        this.title = title;
         this.content = content;
     }
 }

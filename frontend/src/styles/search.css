@@ -9,8 +9,22 @@
     width: 100%;
 }
 
-#search{
+.search-box{
     width: 40%;
     height: 2rem;
     margin: 0 1rem 0 0;
+}
+
+@media screen and (max-width:768px){
+
+    .search-container form{
+        flex-direction: column;
+        width: 100%;
+        padding: 0.625rem !important;
+    }
+
+    .search-box{
+        margin: 0 0 1rem 0;
+        width: 100% !important;
+    }
 }
