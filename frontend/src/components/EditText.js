@@ -16,6 +16,13 @@ export const EditText = (props) =>{
         count: 0
     });
 
+    if(content.text !== props.prefill && props.prefill !== null && typeof props.prefill !== 'undefined'){
+        setContent({
+            text: props.prefill,
+            count: props.prefill.length
+        })
+    }
+
     function handleChange(event){
         setContent({
             text: event.target.value,
@@ -25,9 +32,10 @@ export const EditText = (props) =>{
     }
 
     if(props.limit > -1){
+
         return(
             <>
-                <textarea className={`edit-text ${checkSize} ${checkStyle} ${checkClassName}`} placeholder={checkPlaceholder} style={{margin:'1rem 0', resize:'none'}} inputMode='text' type='text' maxLength={props.limit} onChange={handleChange}/>
+                <textarea className={`edit-text ${checkSize} ${checkStyle} ${checkClassName}`} placeholder={checkPlaceholder} style={{margin:'1rem 0', resize:'none'}} inputMode='text' type='text' maxLength={props.limit} onChange={handleChange} value={props.prefill}/>
                 <p className='counter' style={{fontSize:'small'}}>{content.count}/{props.limit}</p>
             </>
         );

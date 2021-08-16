@@ -4,7 +4,7 @@ import { HashLink } from 'react-router-hash-link';
 import '../styles/button.css';
 
 const SIZES = ['btn-small', 'btn-medium', 'btn-large'];
-const STYLES = ['', 'btn-round-blue', 'btn-text-blue', 'btn-text-selected'];
+const STYLES = ['', 'btn-round-blue', 'btn-round-red', 'btn-text-blue', 'btn-text-selected'];
 
 export const Button = ({children, btnSize, btnStyle, className, isLink, isHashLink, onClick, to}) => {
 

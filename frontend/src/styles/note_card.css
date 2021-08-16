@@ -28,6 +28,10 @@
     padding: 1rem 0;
 }
 
+.note-desc p{
+    white-space: pre-wrap;
+}
+
 .expand-btn{
     padding: 0 !important; 
 }

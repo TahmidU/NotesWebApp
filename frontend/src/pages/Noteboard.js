@@ -18,7 +18,7 @@ export const Noteboard = () => {
 
     function getNotes(){
 
-        axios.get(`http://192.168.0.19:8080/api/note?page=${contents.page}`)
+        axios.get(`http://localhost:8080/api/note?page=${contents.page}`)
         .then(response => {
             setContents((prevState) => {
                 return{

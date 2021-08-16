@@ -29,7 +29,7 @@ export const NoteCard = ({note, onDelete}) => {
                 <div>
                     <p>{note.title}</p>
                 </div>
-                <ImageButton image={EditImg} alt='edit' isLink={true} to={`/edit/${note.id}`}/>
+                <ImageButton image={EditImg} alt='edit' isLink={true} to={`/edit-note/${note.noteId}`}/>
                 <ImageButton image={DeleteImg} alt='delete' onClick={() => deleteNote(note.noteId)}/>
             </div>
             <ToggleButton className='expand-btn' btnSize='btn-small' btnStyle='btn-text-blue' onClick={toggleContentExpand}>{[['+ Expand'], ['- Collapse']]}</ToggleButton>

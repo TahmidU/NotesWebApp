@@ -22,19 +22,35 @@
 }
 
 /* Styles */
-.btn-round-blue{
-    background-color: var(--accent-colour);
+.btn-round-blue, .btn-round-red{
     color: var(--text-colour-btn);
-    border: 0.0625rem solid var(--accent-colour);
     border-radius: 1.625rem;
     transition: all 0.3s ease-in;
 }
 
-.btn-round-blue:hover{
+.btn-round-blue{
+    background-color: var(--accent-colour);
+    border: 0.0625rem solid var(--accent-colour);
+}
+
+.btn-round-red{
+    background-color: var(--error-colour);
+    border: 0.0625rem solid var(--error-colour);
+}
+
+.btn-round-blue:hover, .btn-round-blue:hover{
     transition: all 0.3s ease-out;
     transition-timing-function: ease-out;
+}
+
+.btn-round-blue:hover{
     background: var(--accent-colour-alt);
     color: var(--text-colour-btn-alt);
+}
+
+.btn-round-red:hover{
+    background: var(--primary-colour);
+    color: var(--error-colour);
 }
 
 .btn-text-blue{
