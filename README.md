@@ -22,6 +22,13 @@ This is a simple ReactJS web app with a responsive UI that utilises backend tech
 
 Check the video demo above to see the full preview.
 
+# Features
+
+- Basic crud functionalities for notes. 
+- Data persistence.
+- Note Query and Pagination.
+- Responsive and Beautiful UI/UX.
+
 # Note
 
 I have only tested this on Microsoft Edge, Google Chrome and Mozilla Firefox. It seems to also work on the Android Chrome Browser. As for Apple devices, I am not all too sure how the UI would look, as I do not have any Apple devices to verify.
