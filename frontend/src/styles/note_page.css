@@ -26,6 +26,9 @@ form label{
     margin: 0 0 2rem 0;
 }
 
+.form-btn .btn{
+    margin: 0 1rem 0 0;
+}
 
 @media screen and (max-width:768px){
 
@@ -43,5 +46,20 @@ form label{
 
     .counter{
         font-size: smaller !important;
+    }
+
+    .form-btn{
+        display: flex;
+        flex-direction: column;
+        justify-content: center !important;
+        align-items: center !important;
+    }
+
+    .form-btn .btn{
+        display: flex;
+        margin: 1rem 0;
+        width: 50%;
+        justify-content: center;
+        align-content: center;
     }
 }
