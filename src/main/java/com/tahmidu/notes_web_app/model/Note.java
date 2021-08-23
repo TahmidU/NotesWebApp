@@ -1,6 +1,8 @@
 package com.tahmidu.notes_web_app.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import lombok.ToString;
 
 import javax.persistence.*;
 
@@ -16,6 +18,12 @@ public class Note {
 
     @Column(name = "title", nullable = false) private String title;
     @Column(name = "content") private String content;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    @JsonIgnore
+    @ToString.Exclude
+    private User user;
 
     public Note(){}
 

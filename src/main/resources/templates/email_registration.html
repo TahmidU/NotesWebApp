@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Notes Registration</title>
+    </head>
+
+    <style type="text/css">
+        table    { background-color:#FFF; color:#1a1a1a; font-style: normal; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;}
+    </style>
+
+    <body>
+
+    <table align="center" cellpadding="0" cellspacing="0" width="600">
+
+        <tr>
+            <td align="center">
+                <br>
+                <img src="cid:email_logo_banner" alt="Note" width="600" height="75">
+            </td>
+        </tr>
+        <tr>
+
+            <td align="center">
+
+                <table>
+
+                    <tr>
+                        <td align="center" style="padding: 10px 30px 60px 30px; font-size: xx-large;">
+                            Account Verification
+                            <hr style="height: 2px; border-width:0; color:gray; background-color:gray;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0px 30px 20px 30px;">
+                            <div>Hi <span th:utext="${first_name}">there</span>!</div>
+                            <br>
+                            <div>Thank you for registering your email with Notes.</div>
+                            <br>
+                            <div>Your account is almost ready. All you need to do now is to enter the code below to verify
+                                your account.</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0px 30px 20px 30px; font-size: x-large;" align="center">
+                            <div style="background: #FFCC00; width: fit-content;" th:utext="${code}">Oops, don't worry, this
+                                is a failure on our end. Contact support or retry by resending the code.</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0px 30px 40px 30px;">
+                            If it was not you who registered, simply ignore this email or contact support to get your email
+                            delete from our systems.
+                        </td>
+                    </tr>
+
+                </table>
+
+            </td>
+
+            <tr>
+                <td align="center" style="padding: 0px 30px 0px 30px;">
+                    <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+                </td>
+            </tr>
+
+            <tr>
+                <td align="center" style="color: gray; font-size: small;">
+                    Notes | London, UK | Copyright @ 2021 | All Rights Reserved
+                    <br><br>
+                </td>
+            </tr>
+
+        </tr>
+
+    </table>
+
+    </body>
+
+</html>
+
