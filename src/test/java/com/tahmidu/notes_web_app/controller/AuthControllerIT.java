@@ -26,7 +26,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 @AutoConfigureMockMvc
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 @TestPropertySource(locations = "classpath:application-test.properties")
-public class UserControllerIT {
+public class AuthControllerIT {
 
     @Autowired private MockMvc mockMvc;
 

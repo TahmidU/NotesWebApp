@@ -2,11 +2,12 @@ package com.tahmidu.notes_web_app.service;
 
 import com.tahmidu.notes_web_app.model.User;
 
-public interface IAccountManagementService {
+public interface IAuthService {
 
     User registerUserAccount(User user);
     boolean checkIfUserExists(User user);
     boolean verifyAccount(String email, int token);
     boolean checkIfVerified(String email);
     void resendVerificationToken(String email);
+    String refreshAccessToken(String refreshToken);
 }
