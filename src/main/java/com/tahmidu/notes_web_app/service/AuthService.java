@@ -1,12 +1,13 @@
 package com.tahmidu.notes_web_app.service;
 
+import com.tahmidu.notes_web_app.constant.JWTEnum;
 import com.tahmidu.notes_web_app.event.OnRegistrationComplete;
 import com.tahmidu.notes_web_app.model.User;
 import com.tahmidu.notes_web_app.model.VerificationToken;
 import com.tahmidu.notes_web_app.repository.IUserRepository;
 import com.tahmidu.notes_web_app.repository.IVerificationTokenRepository;
+import com.tahmidu.notes_web_app.util.JWTUtil;
 import com.tahmidu.notes_web_app.util.TimeUtil;
-import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -14,10 +15,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Pattern;
 
 @Service
-public class AccountManagementService implements IAccountManagementService{
+public class AuthService implements IAuthService {
 
     @Autowired private IUserRepository userRepository;
     @Autowired private IVerificationTokenRepository verificationTokenRepository;
@@ -101,4 +101,13 @@ public class AccountManagementService implements IAccountManagementService{
 
     }
 
+    @Override
+    public String retrieveEmailFromJWT(String refreshToken) {
+        return JWTUtil.retrieveEmailFromJWT(refreshToken, JWTEnum.REFRESH_TOKEN);
+    }
+
+    @Override
+    public String refreshAccessToken(String email) {
+        return JWTUtil.generateToken(email, JWTEnum.ACCESS_TOKEN);
+    }
 }

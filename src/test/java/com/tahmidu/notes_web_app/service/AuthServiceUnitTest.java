@@ -1,8 +1,6 @@
 package com.tahmidu.notes_web_app.service;
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.tahmidu.notes_web_app.event.OnRegistrationComplete;
-import com.tahmidu.notes_web_app.model.FakeUser;
 import com.tahmidu.notes_web_app.model.User;
 import com.tahmidu.notes_web_app.model.VerificationToken;
 import com.tahmidu.notes_web_app.repository.IUserRepository;
@@ -19,7 +17,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AccountManagementServiceUnitTest {
+public class AuthServiceUnitTest {
 
     @Mock ApplicationEventPublisher applicationEventPublisher;
     @Mock OnRegistrationComplete registrationComplete;
@@ -29,14 +27,15 @@ public class AccountManagementServiceUnitTest {
 
     @Mock BCryptPasswordEncoder passwordEncoder;
 
-    @InjectMocks AccountManagementService accountManagementService;
+    @InjectMocks
+    AuthService authService;
 
     @BeforeEach
     public void init(){
 
         MockitoAnnotations.openMocks(this);
 
-        Assertions.assertNotNull(accountManagementService);
+        Assertions.assertNotNull(authService);
     }
 
     @Test
@@ -52,7 +51,7 @@ public class AccountManagementServiceUnitTest {
         Mockito.when(userRepository.save(ArgumentMatchers.any())).thenAnswer(i -> i.getArguments()[0]);
         Mockito.doNothing().when(applicationEventPublisher).publishEvent(Matchers.any(OnRegistrationComplete.class));
 
-        User actualUser = accountManagementService.registerUserAccount(validUser);
+        User actualUser = authService.registerUserAccount(validUser);
 
         // Then
         Assertions.assertFalse(actualUser.isEnabled());
@@ -76,7 +75,7 @@ public class AccountManagementServiceUnitTest {
                 .getActiveTokens(ArgumentMatchers.anyInt(), ArgumentMatchers.anyLong(), ArgumentMatchers.anyLong()))
                 .thenReturn(new ArrayList<>());
 
-        boolean actualResult = accountManagementService.verifyAccount(email, token);
+        boolean actualResult = authService.verifyAccount(email, token);
 
         // Then
         Assertions.assertFalse(actualResult);
@@ -104,7 +103,7 @@ public class AccountManagementServiceUnitTest {
         Mockito.when(verificationTokenRepository.saveAll(ArgumentMatchers.anyList())).thenAnswer(i -> i.getArguments()[0]);
         Mockito.when(userRepository.save(ArgumentMatchers.any(User.class))).thenAnswer(i -> i.getArguments()[0]);
 
-        boolean actualResult = accountManagementService.verifyAccount(email, token);
+        boolean actualResult = authService.verifyAccount(email, token);
 
         // Then
         Assertions.assertTrue(actualResult);
