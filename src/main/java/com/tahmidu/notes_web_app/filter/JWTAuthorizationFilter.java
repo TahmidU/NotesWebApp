@@ -2,10 +2,12 @@ package com.tahmidu.notes_web_app.filter;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
+import com.tahmidu.notes_web_app.constant.JWTEnum;
 import com.tahmidu.notes_web_app.constant.SecurityConstants;
 import com.tahmidu.notes_web_app.util.JWTUtil;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
@@ -26,6 +28,13 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response,
                                     FilterChain chain) throws IOException, ServletException {
+        // Exclude
+        if(request.getRequestURI().equals("/api/auth/refresh-token") ||
+                request.getRequestURI().equals("/api/auth/refresh-token/")){
+            chain.doFilter(request, response);
+            return;
+        }
+
 
         String authorizationHeader = request.getHeader(SecurityConstants.HEADER_JWT_AUTHORIZATION);
 
@@ -43,9 +52,8 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 
         if(authorizationHeader != null && !authorizationHeader.isEmpty()){
 
-            String email = JWTUtil.retrieveEmailFromJWT(authorizationHeader);
-
-            if(email != null)
+            String email = JWTUtil.retrieveEmailFromJWT(authorizationHeader, JWTEnum.ACCESS_TOKEN);
+            if(email != null && !email.isEmpty())
                 return new UsernamePasswordAuthenticationToken(email, null, new ArrayList<>());
 
         }

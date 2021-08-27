@@ -9,5 +9,6 @@ public interface IAuthService {
     boolean verifyAccount(String email, int token);
     boolean checkIfVerified(String email);
     void resendVerificationToken(String email);
-    String refreshAccessToken(String refreshToken);
+    String retrieveEmailFromJWT(String refreshToken);
+    String refreshAccessToken(String email);
 }

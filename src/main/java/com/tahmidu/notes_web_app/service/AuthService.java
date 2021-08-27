@@ -102,10 +102,12 @@ public class AuthService implements IAuthService {
     }
 
     @Override
-    public String refreshAccessToken(String refreshToken) {
+    public String retrieveEmailFromJWT(String refreshToken) {
+        return JWTUtil.retrieveEmailFromJWT(refreshToken, JWTEnum.REFRESH_TOKEN);
+    }
 
-        String email = JWTUtil.retrieveEmailFromJWT(refreshToken);
-
+    @Override
+    public String refreshAccessToken(String email) {
         return JWTUtil.generateToken(email, JWTEnum.ACCESS_TOKEN);
     }
 }

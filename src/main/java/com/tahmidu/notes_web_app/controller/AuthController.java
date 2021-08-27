@@ -63,9 +63,14 @@ public class AuthController {
     public ResponseEntity<?> refreshAccessToken(
             @RequestHeader(SecurityConstants.HEADER_JWT_AUTHORIZATION) String refreshToken){
 
+        String trimmedRefreshToken = refreshToken.replace(SecurityConstants.TOKEN_PREFIX, "");
+        String email = authService.retrieveEmailFromJWT(trimmedRefreshToken);
+        if(email.isEmpty())
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+
         Map<String, String> jsonResponse = new HashMap<>();
-        jsonResponse.put(SecurityConstants.JSON_REFRESH, refreshToken.replace(SecurityConstants.TOKEN_PREFIX, ""));
-        jsonResponse.put(SecurityConstants.JSON_ACCESS, authService.refreshAccessToken(refreshToken));
+        jsonResponse.put(SecurityConstants.JSON_REFRESH, trimmedRefreshToken);
+        jsonResponse.put(SecurityConstants.JSON_ACCESS, authService.refreshAccessToken(email));
 
         return new ResponseEntity<>(jsonResponse, HttpStatus.OK);
     }
