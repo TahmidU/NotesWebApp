@@ -1,11 +1,17 @@
 package com.tahmidu.notes_web_app.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.jayway.jsonpath.JsonPath;
+import com.tahmidu.notes_web_app.constant.JWTEnum;
+import com.tahmidu.notes_web_app.constant.SecurityConstants;
 import com.tahmidu.notes_web_app.model.FakeUser;
+import com.tahmidu.notes_web_app.model.Note;
 import com.tahmidu.notes_web_app.model.User;
 import com.tahmidu.notes_web_app.repository.IUserRepository;
 import com.tahmidu.notes_web_app.repository.IVerificationTokenRepository;
+import com.tahmidu.notes_web_app.util.JWTUtil;
 import org.hibernate.Hibernate;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -14,12 +20,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @SuppressWarnings("unused")
 @SpringBootTest
@@ -33,6 +43,8 @@ public class AuthControllerIT {
     @Autowired private IUserRepository userRepository;
     @Autowired private IVerificationTokenRepository verificationTokenRepository;
 
+    @Autowired private BCryptPasswordEncoder passwordEncoder;
+
     ObjectMapper objectMapper = new ObjectMapper();
 
     @BeforeEach
@@ -41,29 +53,103 @@ public class AuthControllerIT {
         Assertions.assertNotNull(mockMvc);
         Assertions.assertNotNull(userRepository);
 
+        userRepository.save(new User("Tahmid", "Uddin", "TahmidU",
+                "tahmid.uddin.dev@gmail.com", passwordEncoder.encode("HellO!123"), true));
+        
+    }
+
+    @Test
+    public void givenCorrectCredentials_whenLogin_thenReturnRefreshTokenAccessTokenAndStatusOK() throws Exception {
+
+        // Given
+        Map<String, String> jsonBody = new HashMap<>();
+        jsonBody.put("email", "tahmid.uddin.dev@gmail.com");
+        jsonBody.put("password", "HellO!123");
+
+        // When Then
+        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.post("/login")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(jsonBody)))
+                .andExpect(MockMvcResultMatchers.status().isOk()).andReturn();
+
+        String actualRefreshToken = objectMapper.convertValue(JsonPath.read(result.getResponse().getContentAsString(),
+                "$.refresh_token"), new TypeReference<>() {});
+
+        String actualAccessToken = objectMapper.convertValue(JsonPath.read(result.getResponse().getContentAsString(),
+                "$.access_token"), new TypeReference<>() {});
+
+        Assertions.assertNotEquals(actualAccessToken, actualRefreshToken);
+        Assertions.assertNotNull(actualAccessToken);
+        Assertions.assertNotNull(actualRefreshToken);
 
     }
 
     @Test
-    public void givenValidUser_whenValidUserSignsUp_thenSendVerificationEmailAndStatusOK() throws Exception {
+    public void givenInCorrectCredentials_whenLogin_thenReturnStatusForbidden() throws Exception {
 
         // Given
-        FakeUser expectedUser = new FakeUser("Tahmid", "Uddin", "TahmidU",
-                "tahmid.uddin.dev@gmail.com", "HellO!123");
+        Map<String, String> jsonBody = new HashMap<>();
+        jsonBody.put("email", "tahmid.uddin.dev@gmail.com");
+        jsonBody.put("password", "HellO!12");
 
         // When Then
-        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.post("/api/user/signup")
+        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.post("/login")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(expectedUser)))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andReturn();
+                .content(objectMapper.writeValueAsString(jsonBody)))
+                .andExpect(MockMvcResultMatchers.status().isOk()).andReturn();
 
-        User actualUser = objectMapper.readValue(result.getResponse().getContentAsString(), User.class);
+        String failedMsg = result.getResponse().getHeader(SecurityConstants.HEADER_AUTH_FAIL);
 
-        Assertions.assertEquals(expectedUser.getFirstName(), actualUser.getFirstName());
-        Assertions.assertEquals(expectedUser.getLastName(), actualUser.getLastName());
-        Assertions.assertEquals(expectedUser.getDisplayUsername(), actualUser.getDisplayUsername());
-        Assertions.assertEquals(expectedUser.getEmail(), actualUser.getEmail());
+        Assertions.assertNotNull(failedMsg);
+    }
+
+    @Test
+    public void givenValidRefreshToken_whenRefreshAccessToken_thenReturnRefreshTokenAndAccessTokenAndStatusOK()
+            throws Exception {
+
+        // Given
+        String headerName = "Authorization";
+        String headerContent = JWTUtil.generateToken("tahmid.uddin.dev@gmail.com", JWTEnum.REFRESH_TOKEN);
+
+        // When Then
+        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.post("/api/auth/refresh-token")
+                .header(headerName, headerContent))
+                .andExpect(MockMvcResultMatchers.status().isOk()).andReturn();
+
+        Assertions.assertNotNull(objectMapper.convertValue(JsonPath.read(result.getResponse().getContentAsString(),
+                "$.refresh_token"), new TypeReference<>() {}));
+        Assertions.assertNotNull(objectMapper.convertValue(JsonPath.read(result.getResponse().getContentAsString(),
+                "$.access_token"), new TypeReference<>() {}));
+    }
+
+    @Test
+    public void givenAccessToken_whenRefreshAccessToken_thenReturnRefreshTokenAndAccessTokenAndStatusForbidden()
+            throws Exception{
+
+        // Given
+        String headerName = "Authorization";
+        String headerContent = JWTUtil.generateToken("tahmid.uddin.dev@gmail.com", JWTEnum.ACCESS_TOKEN);
+
+        // When Then
+        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.post("/api/auth/refresh-token")
+                .header(headerName, headerContent))
+                .andExpect(MockMvcResultMatchers.status().isForbidden()).andReturn();
+
+    }
+
+    @Test
+    public void givenInvalidHeaderContent_whenRefreshAccessToken_thenReturnRefreshTokenAndAccessTokenAndStatusForbidden()
+            throws Exception{
+
+        // Given
+        String headerName = "Authorization";
+        String headerContent = "A Very Invalid Token";
+
+        // When Then
+        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.post("/api/auth/refresh-token")
+                .header(headerName, headerContent))
+                .andExpect(MockMvcResultMatchers.status().isForbidden()).andReturn();
+
     }
 
 }

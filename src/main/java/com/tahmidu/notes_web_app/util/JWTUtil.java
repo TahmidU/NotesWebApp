@@ -2,6 +2,7 @@ package com.tahmidu.notes_web_app.util;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
+import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.auth0.jwt.exceptions.SignatureVerificationException;
 import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.tahmidu.notes_web_app.constant.JWTEnum;
@@ -17,7 +18,6 @@ public class JWTUtil {
 
         if(jwtType == JWTEnum.ACCESS_TOKEN){
             try {
-                System.out.println("Its an access token.");
                 return JWT.create()
                         .withSubject(email)
                         .withExpiresAt(new Date(System.currentTimeMillis() + SecurityConstants.ACCESS_JWT_EXPIRATION_TIME))
@@ -28,7 +28,6 @@ public class JWTUtil {
         }
 
         try{
-            System.out.println("Its a refresh token.");
             return JWT.create()
                     .withSubject(email)
                     .withExpiresAt(new Date(System.currentTimeMillis() + SecurityConstants.REFRESH_JWT_EXPIRATION_TIME))
@@ -48,23 +47,21 @@ public class JWTUtil {
 
         if(jwtType == JWTEnum.ACCESS_TOKEN){
             try{
-                System.out.println(same+" Retrieving for access.");
                 return JWT.require(Algorithm.HMAC256(SecurityConstants.ACCESS_SECRET.getBytes()))
                         .build()
                         .verify(token)
                         .getSubject();
-            }catch (TokenExpiredException | SignatureVerificationException ignored){
+            }catch (TokenExpiredException | SignatureVerificationException | JWTDecodeException ignored){
                 return "";
             }
         }
 
         try{
-            System.out.println(same+" Retrieving for refresh.");
             return JWT.require(Algorithm.HMAC256(SecurityConstants.REFRESH_SECRET.getBytes()))
                     .build()
                     .verify(token)
                     .getSubject();
-        }catch (TokenExpiredException | SignatureVerificationException ignored){
+        }catch (TokenExpiredException | SignatureVerificationException | JWTDecodeException ignored){
             return "";
         }
 
