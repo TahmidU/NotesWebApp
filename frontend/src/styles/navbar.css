@@ -40,7 +40,7 @@ nav{
 }
 
 .nav-link:hover, .nav-link-hidden:hover{
-    color: var(--text-colour-alt);
+    color: var(--tetiary-colour);
     transition: all 0.3s ease-out;
 }
 

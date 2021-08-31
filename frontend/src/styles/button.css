@@ -44,7 +44,7 @@
 }
 
 .btn-round-blue:hover{
-    background: var(--accent-colour-alt);
+    background: var(--primary-colour);
     color: var(--text-colour-btn-alt);
 }
 
@@ -60,6 +60,6 @@
 .btn-text-selected{
     background-color: var(--accent-colour);
     border-radius: 2rem;
-    color: var(--text-colour-dark-alt);
+    color: var(--primary-colour);
     text-decoration: underline;
 }
