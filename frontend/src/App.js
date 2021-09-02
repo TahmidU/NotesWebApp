@@ -4,6 +4,7 @@ import { Home } from './pages/Home';
 import { Noteboard } from './pages/Noteboard';
 import { AddNote } from './pages/AddNote';
 import { EditNote } from './pages/EditNote';
+import { Signup } from './pages/Signup';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path='/noteboard' component={Noteboard}/>
         <Route path='/add-note' component={AddNote}/>
         <Route path='/edit-note/:id' component={EditNote}/>
+        <Route path='/sign-up' component={Signup}/>
       </Switch>
     </Router>
   );

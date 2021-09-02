@@ -1,0 +1,52 @@
+.capital-text{
+    color: var(--text-colour);
+    font-weight: 500;
+    font-size: medium;
+    text-transform: uppercase;
+}
+
+.small-blue-text{
+    color: var(--accent-colour);
+    font-size: small;
+}
+
+.x-large-text{
+    font-size: x-large;
+    font-weight: 500;
+}
+
+.large-text{
+    font-size: xx-large;
+    font-weight: 500;
+}
+
+.medium-text{
+    font-size: medium;
+    font-weight: 500;
+}
+
+.small-text{
+    font-size: small;
+    font-weight: 500;
+}
+
+.x-small-text{
+    font-size: x-small;
+    font-weight: 500;
+}
+
+.xxx-large-bold-text{
+    font-size: 3.5rem;
+    font-weight: bold;
+}
+
+.medium-bold-text{
+    font-size: medium;
+    font-weight: bold;
+}
+
+.medium-bold-text{
+    font-size: medium;
+    font-weight: bold;
+}
+

@@ -1,5 +1,6 @@
 import React from 'react';
 import '../styles/home.css';
+import '../styles/text.css';
 import { Layout } from '../components/Layout';
 import { HeroSection } from '../components/HeroSection';
 import { AboutSection } from '../components/AboutSection';
