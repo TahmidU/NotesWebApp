@@ -10,6 +10,16 @@
     font-size: small;
 }
 
+.small-error-text{
+    color: var(--error-colour);
+    font-size: small;
+}
+
+.x-small-error-text{
+    color: var(--error-colour);
+    font-size: x-small;
+}
+
 .x-large-text{
     font-size: x-large;
     font-weight: 500;

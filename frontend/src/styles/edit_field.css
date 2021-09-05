@@ -25,4 +25,13 @@
     border: 0.1rem solid var(--accent-colour);
 }
 
+.edit-text-error{
+    color: var(--text-colour);
+    background-color: var(--primary-colour);
+    border: 0.1rem solid var(--error-colour);
+    border-radius: 1.625rem;
+    transition: 0.8s;
+}
+
+
 
