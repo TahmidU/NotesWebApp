@@ -46,3 +46,43 @@
     text-align: center;
     width: 30%;
 }
+
+.verify-loading{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.5);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    min-height: 100vh;
+    height: 100%;
+    width: 100%;
+}
+
+@media screen and (max-width:768px){
+
+    .verify-body{
+        min-height: 100%;
+        min-width: 100%;
+    }
+
+    .verify-wrapper{
+        display: flex;
+        position: fixed;
+        justify-content: center;
+        align-items: center;
+        min-width: auto;
+        width: 100%;
+        height: 100%;
+        padding: 0rem 1rem;
+        box-shadow: 0 var(--tetiary-colour);
+    }
+
+    .verify-form{
+        padding: 0 !important;
+    }
+
+}

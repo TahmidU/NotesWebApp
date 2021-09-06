@@ -9,6 +9,7 @@ import { Button } from '../components/Button';
 import axios from 'axios';
 import { EditText } from '../components/EditText';
 import { nameValidation, usernameValidation, emailValidation, passwordValidation } from '../util/regexHelper';
+import { ClipLoader } from 'react-spinners';
 
 export const Signup = () => {
 
@@ -20,7 +21,6 @@ export const Signup = () => {
         password: '',
         confirm_password: ''
     });
-
     const [invalidForm, setInvalidForm] = useState({
        email: false,
        first_name: false,
@@ -31,9 +31,10 @@ export const Signup = () => {
        agreement: false,
        hasSubmitted: false
     });
-
-    const [serverReply, setServerReply] = useState('');
-
+    const [serverReply, setServerReply] = useState({
+        message: '',
+        loading: false
+    });
     const history = useHistory();
 
     function handleFormOnChange(target){
@@ -44,7 +45,6 @@ export const Signup = () => {
     function handleFormOnSubmit(event){
 
         event.preventDefault();
-
 
         // Check for forms input validation
 
@@ -92,6 +92,8 @@ export const Signup = () => {
 
         const url = 'http://192.168.0.19:8080/api/auth/signup';
 
+        setServerReply({...serverReply, loading: true});
+
         axios.post(url, {
             displayUsername: signUpFormInput.username,
             firstName: signUpFormInput.first_name,
@@ -100,10 +102,11 @@ export const Signup = () => {
             password: signUpFormInput.password
         }).then(res => {
             console.log(res);
+            setServerReply({...serverReply, loading: false});
             history.push(`/account-verification?email=${signUpFormInput.email}`);
         }).catch(err => {
             console.log(err);
-            setServerReply(err.response.data.message);
+            setServerReply({message: err.response.data.message, loading: false});
         });
         
     }
@@ -128,11 +131,11 @@ export const Signup = () => {
                         <div className='form-names'>
                             <div>
                                 <label className='capital-text'>First Name </label><br/>
-                                <EditText name='first_name' className='sign-up-edit-box' editStyle={invalidForm.first_name ? 'edit-text-error' : 'edit-text-light'} onChange={handleFormOnChange}/>
+                                <EditText name='first_name' className='sign-up-edit-box firstname-edit' editStyle={invalidForm.first_name ? 'edit-text-error' : 'edit-text-light'} onChange={handleFormOnChange}/>
                             </div>
                             <div>
                                 <label className='capital-text'>Last Name</label><br/>
-                                <EditText name='last_name' className='sign-up-edit-box' editStyle={invalidForm.last_name ? 'edit-text-error' : 'edit-text-light'} onChange={handleFormOnChange}/>
+                                <EditText name='last_name' className='sign-up-edit-box lastname-edit' editStyle={invalidForm.last_name ? 'edit-text-error' : 'edit-text-light'} onChange={handleFormOnChange}/>
                             </div>
                         </div>
                         
@@ -171,13 +174,15 @@ export const Signup = () => {
 
                     </form>
 
-                    { serverReply !== '' ? <p className='signup-error small-error-text'>{serverReply}</p> : <></> }
+                    { serverReply.message !== '' ? <p className='signup-error small-error-text'>{serverReply.message}</p> : <></> }
                     { invalidForm.password_mismatch ? <p className='signup-error small-error-text'>Passwords do not match.</p> : <></> }
                     { !invalidForm.agreement && invalidForm.hasSubmitted ? <p className='signup-error small-error-text'>You must agree with our Terms and Services and Privacy Policy to continue.</p> : <></> }
                     { invalidForm.email || invalidForm.first_name || invalidForm.last_name || invalidForm.username || invalidForm.password ? <p className='signup-error small-error-text'>Please complete all fields correctly.</p> : <></> }
 
                 </div>
             </div>
+
+            {serverReply.loading ? <div className='signup-loading'><ClipLoader size={150} color='#256CE1' loading={serverReply.loading}/></div> : <></>}
 
         </div>
     );

@@ -62,16 +62,40 @@
     text-align: center;
 }
 
+.signup-loading{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.5);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    min-height: 100vh;
+    height: 100%;
+    width: 100%;
+}
+
 @media screen and (max-width:768px){
 
+    html{
+        overflow-y: hidden;
+    }
+
     .signup-body{
+        display: block;
+        position: static;
         min-height: 100%;
         min-width: 100%;
     }
 
     .signup-wrapper{
         display: flex;
-        position: fixed;
+        position:fixed;
+        bottom: 0;
+        overflow-y:auto;
+        overflow-x:hidden;
         justify-content: center;
         align-items: center;
         min-width: auto;
