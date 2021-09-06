@@ -14,6 +14,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping(value = {"/api/auth", "/api/auth/"})
+@CrossOrigin("*")
 public class AuthController {
 
     @Autowired private IAuthService authService;

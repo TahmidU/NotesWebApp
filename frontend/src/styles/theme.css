@@ -6,6 +6,7 @@
     --accent-colour: #256CE1;
     --error-colour: rgb(226, 35, 35);
     --text-colour: var(--quaternary-colour);
+    --text-colour-alt: var(--primary-colour);
     --text-colour-btn: var(--primary-colour);
     --text-colour-btn-alt: var(--accent-colour);
 

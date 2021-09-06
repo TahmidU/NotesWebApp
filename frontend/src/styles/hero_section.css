@@ -27,15 +27,6 @@
     color: var(--text-colour);
 }
 
-.hero-subject h1{
-    font-size: 3.5rem;
-    font-weight: bold;
-}
-
-.hero-subject h2{
-    font-size: xx-large;
-}
-
 .hero-image-container{
     display: flex;
     justify-content: center;
