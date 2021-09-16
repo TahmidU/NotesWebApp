@@ -21,6 +21,7 @@ export const Signup = () => {
         password: '',
         confirm_password: ''
     });
+    
     const [invalidForm, setInvalidForm] = useState({
        email: false,
        first_name: false,
@@ -31,10 +32,12 @@ export const Signup = () => {
        agreement: false,
        hasSubmitted: false
     });
+
     const [serverReply, setServerReply] = useState({
         message: '',
         loading: false
     });
+
     const history = useHistory();
 
     function handleFormOnChange(target){
@@ -168,7 +171,7 @@ export const Signup = () => {
 
                         <br/><br/>
 
-                        <Button className='signup-signin' isLink={true} to='/'>Already have an account?</Button>
+                        <Button className='signup-signin' isLink={true} to='/sign-in'>Already have an account?</Button>
 
                         <br/><br/>
 

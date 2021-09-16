@@ -6,6 +6,8 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.context.request.RequestContextListener;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.util.Properties;
 
@@ -14,6 +16,16 @@ public class AppConfig {
 
     public final static String EMAIL = System.getenv("TEST_EMAIL");
     public final static String PASSWORD = System.getenv("TEST_EMAIL_PASSWORD");
+
+/*    @Bean
+    public WebMvcConfigurer corsConfigurer(){
+        return new WebMvcConfigurer() {
+            @Override
+            public void addCorsMappings(CorsRegistry registry) {
+                registry.addMapping("/login").allowedOrigins("*");
+            }
+        };
+    }*/
 
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder(){

@@ -6,6 +6,7 @@ import { AddNote } from './pages/AddNote';
 import { EditNote } from './pages/EditNote';
 import { Signup } from './pages/Signup';
 import { AccountVerification } from './pages/AccountVerification';
+import { SignIn } from './pages/Signin';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path='/add-note' component={AddNote}/>
         <Route path='/edit-note/:id' component={EditNote}/>
         <Route path='/sign-up' component={Signup}/>
+        <Route path='/sign-in' component={SignIn}/>
         <Route path='/account-verification' component={AccountVerification}/>
       </Switch>
     </Router>
