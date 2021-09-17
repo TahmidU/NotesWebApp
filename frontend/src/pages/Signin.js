@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useHistory } from 'react-router';
 import '../styles/theme.css';
 import '../styles/signin.css';
@@ -9,6 +9,7 @@ import LogoImg from '../img/logo_without_text.svg';
 import { EditText } from '../components/EditText';
 import axios from 'axios';
 import { ClipLoader } from 'react-spinners';
+import { JWTContext } from '../App';
 
 export const SignIn = () => {
 
@@ -23,8 +24,10 @@ export const SignIn = () => {
     });
 
     const history = useHistory();
-    const AuthFailedMsg = 'Email or password is incorrect';
+    const { setJWTData } = useContext(JWTContext);
 
+    const AuthFailedMsg = 'Email or password is incorrect';
+    
     function handleFormOnChange(target){
 
         setSignInFormInput({...signInFormInput, [target.name] : target.value});
@@ -47,7 +50,8 @@ export const SignIn = () => {
             if(res.data === ''){
                 setUserPrompt({message:AuthFailedMsg, loading: false});
             }else{
-                history.push(`/`);
+                setJWTData(res.data);
+                history.push(`/noteboard`);
             }
             
         }).catch(err => {

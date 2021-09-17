@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import '../styles/noteboard.css';
 import { Layout } from '../components/Layout';
 import { NoteCard } from '../components/NoteCard';
 import axios from 'axios';
 import { Button } from '../components/Button';
 import { Search } from '../components/Search';
+import { JWTContext } from '../App';
 
 export const Noteboard = () => {
 
@@ -14,9 +15,13 @@ export const Noteboard = () => {
         totalPages: 0
     });
 
+    const { JWTData } = useContext(JWTContext);
+
     useEffect(getNotes, [contents.page]);
 
     function getNotes(){
+
+        console.log(JWTData);
 
         axios.get(`http://localhost:8080/api/note?page=${contents.page}`)
         .then(response => {
