@@ -30,7 +30,13 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
                 String.format("%s/refresh-token/**", baseURL)
         };
 
-        http.csrf().disable()
+        http
+                .cors()
+                .and()
+                .requestMatchers()
+                .antMatchers("/login")
+                .and()
+                .csrf().disable()
                 .authorizeRequests()
                 .antMatchers(permittedURLPatterns[0]).permitAll()
                 .antMatchers(permittedURLPatterns[1]).permitAll()
@@ -41,6 +47,8 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
                 .addFilter(new JWTAuthenticationFilter(authenticationManager()))
                 .addFilter(new JWTAuthorizationFilter(authenticationManager()));
     }
+
+
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {

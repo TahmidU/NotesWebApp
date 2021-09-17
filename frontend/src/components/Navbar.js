@@ -76,7 +76,7 @@ export const Navbar = () => {
                         </ul>
                 </div>
 
-                <Button className='nav-btn' btnSize='btn-medium' btnStyle='btn-round-blue' to='/noteboard' isLink={true}>Get Started</Button>
+                <Button className='nav-btn' btnSize='btn-medium' btnStyle='btn-round-blue' to='/sign-in' isLink={true}>Get Started</Button>
 
             </nav>
 
