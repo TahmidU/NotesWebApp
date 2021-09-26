@@ -5,12 +5,17 @@
 }
 
 .img-btn-small{
-    width: 2rem;
+    width: 7rem !important;
     height: auto;
 }
 
 .img-btn-small img{
     width: 100%;
+    height: auto;
+}
+
+.img-btn-small > div {
+    width: 1.625rem;
     height: auto;
 }
 
@@ -22,4 +27,26 @@
 .img-btn-logo img{
     width: 100%;
     height: auto;
+}
+
+/* Image and Text Formats */
+
+.img-left-txt-right{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: auto;
+}
+
+.img-right-txt-left{
+
+}
+
+.img-top-txt-btm{
+
+} 
+
+.img-btm-txt-top{
+
 }

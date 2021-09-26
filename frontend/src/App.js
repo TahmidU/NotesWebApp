@@ -8,6 +8,7 @@ import { EditNote } from './pages/EditNote';
 import { Signup } from './pages/Signup';
 import { AccountVerification } from './pages/AccountVerification';
 import { SignIn } from './pages/Signin';
+import { Test } from './pages/Test';
 
 export const JWTContext = React.createContext({
   JWTData:{
@@ -34,6 +35,7 @@ function App() {
       <Router>
         <Switch>
           <Route path='/' exact component={Home}/>
+          <Route path='/test' component={Test}/>
           <Route path='/noteboard' component={Noteboard}/>
           <Route path='/add-note' component={AddNote}/>
           <Route path='/edit-note/:id' component={EditNote}/>
