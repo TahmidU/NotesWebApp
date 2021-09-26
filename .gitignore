@@ -37,3 +37,4 @@ out/
 .vscode/
 /gradle/wrapper/
 notedb.mv.db
+frontend/src/pages/Test.js
