@@ -4,13 +4,21 @@
     border: none;
 }
 
+/* Sizes */
+
 .img-btn-small{
-    width: 2rem;
+    width: 8rem !important;
+    font-size: small;
     height: auto;
 }
 
 .img-btn-small img{
     width: 100%;
+    height: auto;
+}
+
+.img-btn-small > div {
+    width: 1.625rem;
     height: auto;
 }
 

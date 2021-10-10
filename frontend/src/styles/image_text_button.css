@@ -1,0 +1,47 @@
+/* Images and Text formats */
+
+.img-left-txt-right, .img-right-txt-left{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    width: auto;
+}
+
+.img-left-txt-right{
+    flex-direction: row;
+}
+
+.img-left-txt-right > div{
+    margin-right: 0.5rem;
+}
+
+.img-right-txt-left{
+    flex-direction: row-reverse;
+}
+
+.img-right-txt-left > div{
+    margin-left: 0.5rem;
+}
+
+.img-top-txt-btm, .img-btm-txt-top{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+}
+
+.img-top-txt-btm{
+    flex-direction: column;
+}
+
+.img-top-txt-btm > div{
+    margin-bottom: 0.125rem;
+}
+
+.img-btm-txt-top{
+    flex-direction: column-reverse;
+}
+
+.img-btm-txt-top > div{
+    margin-top: 0.125rem;
+}

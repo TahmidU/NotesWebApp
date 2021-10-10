@@ -13,6 +13,10 @@
     font-size: small;
 }
 
+.btn-small > div{
+    width: 1.625rem;
+}
+
 .btn-medium{
     font-size: medium;
 }
@@ -30,6 +34,7 @@
 
 .btn-round-blue{
     background-color: var(--accent-colour);
+    stroke: var(--primary-colour);
     border: 0.0625rem solid var(--accent-colour);
 }
 
@@ -45,6 +50,7 @@
 
 .btn-round-blue:hover{
     background: var(--primary-colour);
+    stroke: var(--accent-colour);
     color: var(--text-colour-btn-alt);
 }
 

@@ -38,3 +38,4 @@ out/
 /gradle/wrapper/
 notedb.mv.db
 frontend/src/pages/Test.js
+frontend/src/styles/test.css
