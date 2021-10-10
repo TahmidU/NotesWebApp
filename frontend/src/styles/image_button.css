@@ -4,8 +4,11 @@
     border: none;
 }
 
+/* Sizes */
+
 .img-btn-small{
-    width: 7rem !important;
+    width: 8rem !important;
+    font-size: small;
     height: auto;
 }
 
@@ -27,26 +30,4 @@
 .img-btn-logo img{
     width: 100%;
     height: auto;
-}
-
-/* Image and Text Formats */
-
-.img-left-txt-right{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    width: auto;
-}
-
-.img-right-txt-left{
-
-}
-
-.img-top-txt-btm{
-
-} 
-
-.img-btm-txt-top{
-
 }
